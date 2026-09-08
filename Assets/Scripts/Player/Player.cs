@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public Image bombGauge;
     public GameObject bomb;
     public GameObject myBody;
+    public GameObject[] unitGaugeUI;
+    public Image unitGauge;
 
     public float speed = 8f;
     public int hp = 3;
@@ -181,23 +183,38 @@ public class Player : MonoBehaviour
         {
             if (gameManager.noActionFlag == true) return;
             if (downFlag) return;
+            if (isAnySpawnPoint() == false) return;
 
             isUnitPushing = true;
+            unitGaugeUI[0].SetActive(true);
+            if (unitSelectNum == 0) unitGaugeUI[1].SetActive(true);
+            if (unitSelectNum == 1) unitGaugeUI[2].SetActive(true);
+            if (unitSelectNum == 2) unitGaugeUI[3].SetActive(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
             isUnitPushing = false;
+            unitGaugeUI[0].SetActive(false);
+            unitGaugeUI[1].SetActive(false);
+            unitGaugeUI[2].SetActive(false);
+            unitGaugeUI[3].SetActive(false);
         }
     }
 
     private void UnitButtonPushing()
     {
+        if (unitSelectNum == 0 && mana < 20) return;
+        if (unitSelectNum == 1 && mana < 30) return;
+        if (unitSelectNum == 2 && mana < 50) return;
+
         if (isUnitPushing)
         {
             unitPushingTime += Time.deltaTime;
+            unitGauge.fillAmount = unitPushingTime;
             if (unitPushingTime > 1f)
             {
                 unitPushingTime = 0;
+                unitGauge.fillAmount = unitPushingTime;
                 for (int i = 0; i < spawnPoint.Length; i++)
                 {
                     float dy = Mathf.Abs(transform.position.y - spawnPoint[i].transform.position.y);
@@ -207,20 +224,28 @@ public class Player : MonoBehaviour
                         {
                             mana -= 20;
                             Instantiate(unit[0], spawnPoint[i].transform.position, Quaternion.identity);
+                            animator.SetTrigger("spawn");
                         }
                         else if (unitSelectNum == 1 && mana >= 30)
                         {
                             mana -= 30;
                             Instantiate(unit[1], spawnPoint[i].transform.position, Quaternion.identity);
+                            animator.SetTrigger("spawn");
                         }
                         else if (unitSelectNum == 2 && mana >= 50)
                         {
                             mana -= 50;
                             Instantiate(unit[2], spawnPoint[i].transform.position, Quaternion.identity);
+                            animator.SetTrigger("spawn");
                         }
                     }
                 }
             }
+        }
+        else
+        {
+            unitPushingTime = 0;
+            unitGauge.fillAmount = unitPushingTime;
         }
     }
 
@@ -350,5 +375,21 @@ public class Player : MonoBehaviour
         {
             bombUI.SetActive(false);
         }
+    }
+
+    //Check whether a spawner exists in you own lane
+    private bool isAnySpawnPoint()
+    {
+        float myY = transform.position.y;
+        foreach(GameObject sp in spawnPoint)
+        {
+            if (sp == null) continue;
+            float diffY = Mathf.Abs(sp.transform.position.y - myY);
+            if (diffY <= 0.8f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
