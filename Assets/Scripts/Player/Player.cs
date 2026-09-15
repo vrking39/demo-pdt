@@ -369,6 +369,7 @@ public class Player : MonoBehaviour
         bombGauge.fillAmount = (float)bombNum / 1000;
         if (bombNum >= 1000)
         {
+            if (bombUI.activeSelf == false) animator.SetTrigger("bomb");
             bombUI.SetActive(true);
         }
         else
