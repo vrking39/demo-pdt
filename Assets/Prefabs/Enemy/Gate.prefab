@@ -4896,6 +4896,7 @@ MonoBehaviour:
   mana: {fileID: 5233477279815405418, guid: 00852561b84a8464789cdf874038a547, type: 3}
   hpGauge: {fileID: 7417935943198912541}
   upgradeUI: {fileID: 4896157257624511235, guid: b6efafebb22052b47b112a4e2a2ee249, type: 3}
+  eff: {fileID: 8214742899246203595, guid: 697977cd0e4b0e3478daf93c477535b8, type: 3}
   enemyType: 3
 --- !u!114 &3673445292925468737
 MonoBehaviour:

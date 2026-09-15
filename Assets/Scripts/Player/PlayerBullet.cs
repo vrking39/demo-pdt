@@ -8,6 +8,7 @@ public class PlayerBullet : MonoBehaviour
     [NonSerialized] public float upSpeed = 0f;
 
     public SpriteRenderer sprite;
+    public GameObject eff;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class PlayerBullet : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<Enemy>().TakeDMG(1);
+            Instantiate(eff, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

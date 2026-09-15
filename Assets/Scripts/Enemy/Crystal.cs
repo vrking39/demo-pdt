@@ -5,6 +5,7 @@ public class Crystal : MonoBehaviour
     public GameObject mana;
     public Collider2D myCol;
     public GameObject myTex;
+    public GameObject eff;
 
     private int hp = 10;
 
@@ -20,6 +21,7 @@ public class Crystal : MonoBehaviour
         {
             hp--;
             Instantiate(mana, transform.position, Quaternion.identity);
+            Instantiate(eff, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
         }
     }

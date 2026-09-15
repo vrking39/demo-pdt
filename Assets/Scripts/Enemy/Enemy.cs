@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public GameObject mana;
     public Transform hpGauge;
     public GameObject upgradeUI;
+    public GameObject eff;
 
     Unit targetUnit = null;
     GameManager gameManager;
@@ -151,6 +152,7 @@ public class Enemy : MonoBehaviour
                 gameManager.GameClear();
             }
             Drop();
+            Instantiate(eff, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

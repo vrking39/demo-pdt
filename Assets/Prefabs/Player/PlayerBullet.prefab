@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
   sprite: {fileID: 9154685848155792640}
+  eff: {fileID: 7755800339144102839, guid: 01e085d1aea282940a857f59ca38c794, type: 3}
 --- !u!1 &7819804629692410597
 GameObject:
   m_ObjectHideFlags: 0
