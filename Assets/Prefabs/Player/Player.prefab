@@ -1376,6 +1376,7 @@ MonoBehaviour:
   - {fileID: 1855983998000312584}
   - {fileID: 7153393076798114393}
   unitGauge: {fileID: 3090747630400959032}
+  bombCutUI: {fileID: 5898374768655600051, guid: d261bf3e521991b41a24ba99078a585c, type: 3}
   speed: 8
   hp: 3
   mana: 0

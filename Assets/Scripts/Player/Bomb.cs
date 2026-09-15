@@ -4,10 +4,13 @@ using DG.Tweening;
 public class Bomb : MonoBehaviour
 {
     GameManager gameManager;
+    CameraManager cameraManager;
 
     private void Start()
     {
+        cameraManager = CameraManager.Instance;
         gameManager = GameManager.Instance;
+        cameraManager.HitStop(1f);
         Destroy(gameObject, 2f);
     }
 

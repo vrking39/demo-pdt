@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public GameObject myBody;
     public GameObject[] unitGaugeUI;
     public Image unitGauge;
+    public GameObject bombCutUI;
 
     public float speed = 8f;
     public int hp = 3;
@@ -261,7 +262,8 @@ public class Player : MonoBehaviour
             {
                 bombNum = 0;
                 Vector3 pos = transform.position;
-                Instantiate(bomb, new Vector3(pos.x + 3, pos.y, 0), quaternion.identity);
+                Instantiate(bomb, new Vector3(pos.x + 3, pos.y, 0), Quaternion.identity);
+                Instantiate(bombCutUI, Vector3.zero, Quaternion.identity);
             }
         }
     }
