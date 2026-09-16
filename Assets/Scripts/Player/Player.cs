@@ -33,9 +33,11 @@ public class Player : MonoBehaviour
 
     Vector3 move;
     GameManager gameManager;
+    SE se;
 
     private void Start()
     {
+        se = SE.Instance;
         gameManager = GameManager.Instance;
         ShowManaNum();
         ShowBombGauge();
@@ -115,6 +117,7 @@ public class Player : MonoBehaviour
             if (shotTime >= 0.3f)
             {
                 shotTime = 0;
+                se.SEShot();
 
                 if (gameManager.shotUpgradeLV == 0)
                 {

@@ -5,11 +5,14 @@ public class Bomb : MonoBehaviour
 {
     GameManager gameManager;
     CameraManager cameraManager;
+    SE se;
 
     private void Start()
     {
+        se = SE.Instance;
         cameraManager = CameraManager.Instance;
         gameManager = GameManager.Instance;
+        Invoke(nameof(SoundBomb), 0.05f);
         cameraManager.HitStop(1f);
         Destroy(gameObject, 2f);
     }
@@ -36,5 +39,10 @@ public class Bomb : MonoBehaviour
                 collision.transform.DOMoveX(2, 0.1f).SetRelative().SetLink(collision.gameObject);
             }
         }
+    }
+
+    private void SoundBomb()
+    {
+        se.SEBomb();
     }
 }

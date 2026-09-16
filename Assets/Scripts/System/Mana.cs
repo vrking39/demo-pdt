@@ -7,9 +7,11 @@ public class Mana : MonoBehaviour
     private bool onceFlag = false;
 
     Transform playerPos;
+    SE se;
 
     private void Start()
     {
+        se = SE.Instance;
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         float posX = Random.Range(-2f, 2f);
         float posY = Random.Range(-0.5f, 0.5f);
@@ -33,6 +35,7 @@ public class Mana : MonoBehaviour
             if (getDis <= 0.5) // if the player is very close
             {
                 // pick this up
+                se.SEGet();
                 playerPos.GetComponent<Player>().mana += 5;
                 Destroy(gameObject);
             }

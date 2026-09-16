@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     Unit targetUnit = null;
     GameManager gameManager;
     Player player;
+    SE se;
 
     public enum EnemyType
     {
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        se = SE.Instance;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         gameManager = GameManager.Instance;
         maxHp = hp;
@@ -141,6 +143,7 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0)
         {
+            se.SEDead();
             if (enemyType == EnemyType.Gate)
             {
                 Instantiate(upgradeUI, Vector3.zero, Quaternion.identity);
