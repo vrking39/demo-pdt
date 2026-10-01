@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         noActionFlag = true;
         // Scene Transistion
+        SceneManager.LoadScene("Title");
     }
 
     public void GameClear()
